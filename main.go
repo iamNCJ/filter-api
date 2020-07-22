@@ -18,9 +18,7 @@ func main() {
 	// gin
 	r := gin.Default()
 	r.GET("/", func(c *gin.Context) {
-		buf := make([]byte, 1024)
-		n, _ := c.Request.Body.Read(buf)
-		body := string(buf[0:n])
+		body := c.Query("string")
 		fmt.Print(body)
 
 		res, illegalWord := filter.Validate(body)
